@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-GardenExchange::Application.config.secret_key_base = 'a41dfec4b778d7485dfe27339f53a2d2d2a66cf8ca0d97f4155c8d8fc19b2dd827d418c5ac338e0a68e1d3391bb57b0c26de6492a7fc8a029d30910ab911c691'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+GardenExchange::Application.config.secret_key_base = secure_token
