@@ -1,0 +1,27 @@
+<div class="bg-primary img-item" >
+<img src="http://placekitten.com/400/200" alt="item photo" class="img-responsive">
+</div>
+<button type="button" class="btn btn-default">Add your own picture</button>
+
+<div>
+  <%= form_for(@item) do |f| %>
+
+    <%= f.label  :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label  :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label  :location %>
+    <%= f.text_field :location %>
+
+    <%= f.label  :email %>
+    <%= f.email_field :email %>
+
+    <%= f.label  :phone %>
+    <%= f.telephone_field :phone %>
+
+    <%= f.submit "Add my item", class: "btn btn-default" %>
+
+  <% end %>
+</div>
