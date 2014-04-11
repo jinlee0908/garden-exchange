@@ -1,4 +1,8 @@
 GardenExchange::Application.routes.draw do
+  root 'static_pages#home'
+  match '/search_list', to: 'static_pages#search_list', via: 'get'
+  # get "static_pages/home"
+  # get "static_pages/search_list"
   resources :items
   # get "items/new"
   # The priority is based upon order of creation: first created -> highest priority.
