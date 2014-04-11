@@ -7,7 +7,7 @@ describe "Item Pages" do
   describe "create a new item page" do
     before  { visit new_item_path }
 
-    it { should have_content('Add a New Item') }
+    it { should have_content('Add an item to the exchange') }
   end
 
   describe "create a new item" do
@@ -16,7 +16,7 @@ describe "Item Pages" do
     let(:submit) { "Add my item" }
 
     describe "with invalid information" do
-
+  
       it "should not create an item" do
         expect { click_button submit }.not_to change(Item, :count)
       end
