@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Seeding the Category model with some test data
+
+test_categories = %w{Artichokes Asparagus Beans Beets Broccoli
+              Cabbage Carrots Cauliflower Celery Chard Collards Corn
+              Cucumbers Eggplant Garlic Kale Kohlrabi Leeks Lettuce Melons
+              Mushrooms Onions Parsley Parsnips Peas Peppers Potatos Pumpkins
+              Radishes Rhubarb Shallots Spinach Squash Tomatoes Other}
+
+test_categories.each do |i|
+  img = 100
+  Category.create(category: i, image_id: img)
+  img =+ 1
+end

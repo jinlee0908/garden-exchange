@@ -5,7 +5,7 @@ describe Item do
   before { @item = Item.new(name: "Example Item", description: "This is an example.",
                             location: "123 First Street, Portland Oregon", email: "example@example.com",
                             phone: "123-456-7890", trade_status: "", image_id: "",
-                            category_id: "") }
+                            category_id: 123 ) }
 
   subject { @item }
 
@@ -41,6 +41,16 @@ describe Item do
     before { @item.email = "" }
     before { @item.phone = "123-456-7890"}
     it { should be_valid }
+  end
+
+  describe "when category id is not present" do
+    before { @item.category_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when description is too long" do
+    before { @item.description = "a" * 141 }
+    it { should_not be_valid }
   end
 
 end

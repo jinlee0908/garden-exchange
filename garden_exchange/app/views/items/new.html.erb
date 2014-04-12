@@ -1,28 +1,37 @@
-<div class="bg-primary img-item" >
-<img src="http://placekitten.com/400/200" alt="item photo" class="img-responsive">
-</div>
-<h2>Add an item to the exchange</h2>
-<button type="button" class="btn btn-default">Add your own picture</button>
+<% provide(:title, 'New Item') %>
 
+<h1>Add an item to the exchange!</h1>
+<div class="bg-primary img-item" >
+<img src="http://placekitten.com/1000/400" alt="item photo" class="img-responsive">
+</div>
 <div>
-  <%= form_for(@item) do |f| %>
+<button type="button" class="btn btn-default span6">Add your own picture</button>
+</div>
+<div class="form-group">
+  <%= form_for @item do |f| %>
+
+    <%= render 'shared/error_messages' %>
+
+    <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
 
     <%= f.label  :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => "What are you exchanging?" %>
 
     <%= f.label  :description %>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, :placeholder => "What do you want people to know about it?" %>
 
     <%= f.label  :location %>
-    <%= f.text_field :location %>
+    <%= f.text_field :location%>
 
     <%= f.label  :email %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, :placeholder => "Add an email" %>
 
     <%= f.label  :phone %>
-    <%= f.telephone_field :phone %>
+    <%= f.telephone_field :phone, :placeholder => "Add a phone number" %>
 
-    <%= f.submit "Add my item", class: "btn btn-default" %>
-
+    <%= f.submit "Add my item", class: "btn btn-default span6" %>
   <% end %>
+  <div>
+    <button type="button" class="btn btn-default span6">I changed my mind...</button>
+  </div>
 </div>
