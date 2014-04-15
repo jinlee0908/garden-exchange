@@ -1,6 +1,7 @@
 GardenExchange::Application.routes.draw do
-  root 'static_pages#home'
-  match '/search_list', to: 'static_pages#search_list', via: 'get'
+  root 'items#index'
+  match '/list', to: 'items#search_list', via: 'get'
+  
   # get "static_pages/home"
   # get "static_pages/search_list"
   resources :items

@@ -34,6 +34,19 @@ class ItemsController < ApplicationController
     # route that user get to from email confirmation to
   end
 
+  def index
+    @items = Item.all
+    @hash = Gmaps4rails.build_markers(@items) do |item, marker|
+      marker.lat item.latitude
+      marker.lng item.longitude
+      # marker.inforwindow item.name
+    end
+  end
+
+  def search_list
+    @items = Item.all
+  end
+
   private
 
   def item_params

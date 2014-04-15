@@ -54,6 +54,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     geocoder (1.1.9)
+    gmaps4rails (2.1.2)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.0.2)
@@ -145,6 +146,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   figaro
   geocoder (= 1.1.9)
+  gmaps4rails (= 2.1.2)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   rails (= 4.0.4)
