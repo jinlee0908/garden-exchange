@@ -34,6 +34,14 @@ class ItemsController < ApplicationController
     # route that user get to from email confirmation to
   end
 
+  def index
+    
+  end
+
+  def search_list
+    @items = Item.all
+  end
+
   private
 
   def item_params
