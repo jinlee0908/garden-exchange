@@ -50,6 +50,9 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     geocoder (1.1.9)
     hike (1.2.3)
     i18n (0.6.9)
@@ -140,6 +143,7 @@ DEPENDENCIES
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)
   factory_girl_rails (= 4.2.1)
+  figaro
   geocoder (= 1.1.9)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)

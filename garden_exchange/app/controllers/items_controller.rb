@@ -8,6 +8,11 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "Your item is on the exchange!"
+      unless @item.email.empty?
+        ItemMailer.item_confirmation_email(@item).deliver
+      else
+        # send a text
+      end
       redirect_to root_url
     else
       render 'new'
