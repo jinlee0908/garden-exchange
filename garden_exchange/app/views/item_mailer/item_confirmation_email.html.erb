@@ -23,7 +23,8 @@
     <p>
     You listed the following on the Garden Exchange:
     <ul>
-      <li><%= @item.category_id %></li>
+      <% @display_category = @item.category %>
+      <li><%= @display_category.category %></li>
       <li><%= @item.name %></li>
       <li><%= @item.description %></li>
     </ul>

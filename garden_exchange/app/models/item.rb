@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  belongs_to :category
+
   geocoded_by :location #this can be a method to pull in... 
   after_validation :geocode, :if => :location_changed?
   before_create :phone_integers_only
