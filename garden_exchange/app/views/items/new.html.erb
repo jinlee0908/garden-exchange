@@ -7,10 +7,12 @@
 <div>
 <button type="button" class="btn btn-default span6">Add your own picture</button>
 </div>
-<div class="form-group">
+<div class="form-group span6">
   <%= form_for @item do |f| %>
 
     <%= render 'shared/error_messages' %>
+
+    <%= f.file_field :image_id %>
 
     <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
 
@@ -32,6 +34,6 @@
     <%= f.submit "Add my item", class: "btn btn-default span6" %>
   <% end %>
   <div>
-    <button type="button" class="btn btn-default span6">I changed my mind...</button>
+    <button type="button" class="btn btn-default span6">Nevermind. I don't want to list anything.</button>
   </div>
 </div>

@@ -24,9 +24,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # /items/<id>/edit edit_item_path(item)
-    # route that user gets to from email confirmation
-    # need to know if user is editing or cancelling
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update_attributes(item_params)
+      #success
+      redirect_to root_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy

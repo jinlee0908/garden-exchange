@@ -10,7 +10,8 @@ Thanks for listing some of this season's harvest up on the garden exchange. Here
 
 You listed the following on the Garden Exchange:
 
-<%= @item.category_id %>
+<% @display_category = @item.category %>
+<%= @display_category.category %>
 <%= @item.name %>
 <%= @item.description %>
 

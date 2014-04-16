@@ -8,7 +8,7 @@ describe "Item Pages" do
     before  { visit new_item_path }
 
     it { should have_content('Add an item to the exchange') }
-    it { should have_selector('option') }
+    it { should have_selector('select') }
   end
 
   describe "create a new item" do
@@ -30,7 +30,6 @@ describe "Item Pages" do
     end
 
     describe "with valid information" do
-      pending
       before do
         select "Kale", from: "item_category_id"
         fill_in "Name", with: "Curly Kale"
@@ -40,7 +39,29 @@ describe "Item Pages" do
       end
       
       it "should create a new item" do
+        pending
         expect { click_button submit }.to change(Item, :count).by(1)
+      end
+    end
+
+    describe "editing an existing item" do
+      let(:item) { FactoryGirl.create(:item) }
+      let(:submit) { 'Save changes' }
+      before { visit edit_item_path(item) }
+
+      describe "edit page" do
+        it { should have_content('Edit your item') }
+        it { should have_title('Edit Item') }
+        it { should have_selector('form') }
+      end
+
+      describe "with invalid information" do
+        before do 
+          item.location = " "
+          click_button submit
+        end 
+
+        it { should have_content('error') }
       end
     end
   end
