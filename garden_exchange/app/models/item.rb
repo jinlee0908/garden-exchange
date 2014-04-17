@@ -15,6 +15,17 @@ class Item < ActiveRecord::Base
             allow_blank: true
   validate :must_have_email_or_phone
 
+  def self.search(search,category_id)
+    if search
+      where('latitude = ?', "#{search}")
+      where('longitude = ?', "#{search}")
+      where('miles = ?', "#{search}")
+      where('category_id = ?', "#{category_id}")
+    else
+      scoped
+    end
+  end
+
   private
 
     def must_have_email_or_phone

@@ -35,11 +35,15 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    if params[:search]
+      @items = Item.search(params[:search],params[:item][:category_id])
+    else
+      @items = Item.all
+    end
+        puts params.inspect
     @hash = Gmaps4rails.build_markers(@items) do |item, marker|
       marker.lat item.latitude
       marker.lng item.longitude
-      # marker.inforwindow item.name
     end
   end
 

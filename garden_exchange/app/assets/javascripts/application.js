@@ -17,3 +17,11 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+
+
+$(function() {
+  $("#items_search input").keyup(function() {
+    $.get($("#items_search").attr("action"), $("#items_search").serialize(), null, "script");
+    return false;
+  });
+});
