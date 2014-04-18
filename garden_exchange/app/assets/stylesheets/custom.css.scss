@@ -130,5 +130,11 @@ input {
   margin-top: 45px;
   @include box-sizing;
 }
+#area img{
+  max-width: inherit;
+}
 
+#geo img{
+  max-width: 0%;
+}
 
