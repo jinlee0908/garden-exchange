@@ -1,6 +1,8 @@
 class Item < ActiveRecord::Base
   belongs_to :category
 
+  has_attached_file :image
+
   geocoded_by :location #this can be a method to pull in... 
   after_validation :geocode, :if => :location_changed?
   before_create :phone_integers_only
@@ -14,6 +16,7 @@ class Item < ActiveRecord::Base
             format: { with: /\d/ },
             allow_blank: true
   validate :must_have_email_or_phone
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   private
 

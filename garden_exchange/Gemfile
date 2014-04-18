@@ -19,7 +19,9 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'geocoder', '1.1.9'
 gem 'gmaps4rails', '2.1.2'
-gem 'figaro'
+gem 'figaro', '0.7.0'
+gem 'paperclip', '4.1'
+gem 'aws-sdk'
 
 group :test do
   gem 'capybara', '2.1.0'

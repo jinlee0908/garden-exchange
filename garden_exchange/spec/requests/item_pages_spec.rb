@@ -57,7 +57,6 @@ describe "Item Pages" do
 
       describe "with invalid information" do
         before do 
-          item.location = " "
           click_button submit
         end 
 
