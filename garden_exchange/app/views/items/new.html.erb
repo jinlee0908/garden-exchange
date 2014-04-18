@@ -2,11 +2,10 @@
 
 <h1>Add an item to the exchange!</h1>
 <div class="container">
-  <div class="bg-primary img-item" >
-  <img src="http://placekitten.com/1000/400" alt="item photo" class="img-responsive">
-
   <div class="form-group span6">
     <%= form_for(@item, multipart: true) do |f| %>
+
+      <%= image_tag @item.image.url(:medium), class:'bg-primary img-item img-responsive' %>
 
       <%= render 'shared/error_messages' %>
 

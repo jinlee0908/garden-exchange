@@ -36,4 +36,7 @@ GardenExchange::Application.configure do
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
 end

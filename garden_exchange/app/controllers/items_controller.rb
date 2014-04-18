@@ -31,10 +31,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update_attributes(item_params)
       #success
-      redirect_to root_url
+      redirect_to @item
     else
       render 'edit'
     end
+  end
+
+  def upload
+     uploaded_io = params[:items][:image]
+     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+       file.write(uploaded_io.read)
+     end
   end
 
   def destroy
