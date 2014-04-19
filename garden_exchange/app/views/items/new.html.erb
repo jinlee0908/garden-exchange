@@ -3,7 +3,7 @@
 <h1>Add an item to the exchange!</h1>
 <div class="container">
   <div class="form-group span6">
-    <%= form_for(@item, multipart: true) do |f| %>
+    <%= form_for @item do |f| %>
 
       <%= image_tag @item.image.url(:medium), class:'bg-primary img-item img-responsive' %>
 

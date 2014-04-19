@@ -3,8 +3,8 @@ class Item < ActiveRecord::Base
 
   has_attached_file :image, 
                     :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
-                    :default_url => ActionController::Base.helpers.asset_path('missing.png'),
-                    :s3_permissions => :private
+                    :default_url => ActionController::Base.helpers.asset_path('missing.png')
+                    # :s3_permissions => :private
 
   geocoded_by :location #this can be a method to pull in... 
   after_validation :geocode, :if => :location_changed?
