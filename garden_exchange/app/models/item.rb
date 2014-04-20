@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
   geocoded_by :location
   reverse_geocoded_by :latitude, :longitude 
   after_validation :geocode
-
+  attr_encrypted :email, key: ENV['TOKEN_KEY']
   has_attached_file :image, 
                     :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
                     :default_url => ActionController::Base.helpers.asset_path('missing.png')
