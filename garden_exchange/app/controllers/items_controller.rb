@@ -50,17 +50,17 @@ class ItemsController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @items = Item.search(params[:search],params[:item][:category_id])
-    else
-      @items = Item.all
+      if params[:search]
+        found_address=latlong(params[:search][:latitude], params[:search][:longitude])
+        addresses = Item.near(found_address, params[:search][:miles])
+        @items = addresses.search(params[:item][:category_id]) 
+      else
+        @items = Item.all
+      end
+          puts params.inspect
+      @locations = Item.markers(@items)
+
     end
-        puts params.inspect
-    @hash = Gmaps4rails.build_markers(@items) do |item, marker|
-      marker.lat item.latitude
-      marker.lng item.longitude
-    end
-  end
 
   def search_list
     @items = Item.all
@@ -70,5 +70,14 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :location, :email, :phone, :category_id, :image)
+  end
+
+  def latlong(latitude, longitude)
+    search_address = Geocoder.search([latitude, longitude])
+    unless search_address[0].nil?
+      search_address[0].data["formatted_address"]
+    else
+      #ToDo - come up an alternate or default if something query...
+    end  
   end
 end
