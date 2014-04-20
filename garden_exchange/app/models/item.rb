@@ -1,8 +1,9 @@
 class Item < ActiveRecord::Base
   belongs_to :category
 
-  geocoded_by :location #this can be a method to pull in... 
-  after_validation :geocode, :if => :location_changed?
+  geocoded_by :location 
+  reverse_geocoded_by :latitude, :longitude  
+  after_validation :geocode, :reverse_geocode
   before_create :phone_integers_only
 
   validates :category_id, presence: true
@@ -15,14 +16,19 @@ class Item < ActiveRecord::Base
             allow_blank: true
   validate :must_have_email_or_phone
 
-  def self.search(search,category_id)
-    if search
-      where('latitude = ?', "#{search}")
-      where('longitude = ?', "#{search}")
-      where('miles = ?', "#{search}")
+  def self.search(category_id)
+    if category_id
       where('category_id = ?', "#{category_id}")
     else
       scoped
+    end
+  end
+
+
+  def self.markers(items)
+   Gmaps4rails.build_markers(items) do |item, marker|
+      marker.lat item.latitude
+      marker.lng item.longitude
     end
   end
 

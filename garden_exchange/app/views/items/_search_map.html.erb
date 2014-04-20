@@ -14,14 +14,13 @@
 
 
 <script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'area'}}, 
-  function(){ markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();    
-  });
-  
 
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: { center:{lat:45.5424364,lng:-122.654422}, maxZoom:18}, internal: {id: 'area'}}, 
+    function(){ markers = handler.addMarkers(<%=raw @locations.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();    
+    });
 
 </script>
 
