@@ -2,17 +2,14 @@ class SearchController < ApplicationController
 
   def index
       if params[:search].present?
-        logger.info "in if block"
         found_address=latlong(params[:search][:latitude], params[:search][:longitude])
         selected_miles = miles(params[:search][:miles])
         addresses = Item.near(found_address, selected_miles)
         @items = addresses.search(params[:item][:category_id]) 
       else
-        logger.info "in else block"
         @items = Item.all
-        logger.info "#{@items.count}"
       end
-          # puts params.inspect
+          puts params.inspect
       @locations = Search.markers(@items)
 
     end
