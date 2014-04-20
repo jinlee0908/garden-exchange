@@ -1,15 +1,13 @@
 class Item < ActiveRecord::Base
   belongs_to :category
-
+  geocoded_by :location
+  reverse_geocoded_by :latitude, :longitude 
 
   has_attached_file :image, 
                     :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
                     :default_url => ActionController::Base.helpers.asset_path('missing.png')
                     # :s3_permissions => :private
-  geocoded_by :location 
-  reverse_geocoded_by :latitude, :longitude  
-  after_validation :geocode, :reverse_geocode
-
+  
   before_create :phone_integers_only
 
   validates :category_id, presence: true
@@ -24,7 +22,7 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   # validates_attachment_size :image, :size => { :in => 0...10.kilobytes }
 
-  def self.search(category_id)
+    def self.search(category_id)
     if category_id
       where('category_id = ?', "#{category_id}")
     else
@@ -32,13 +30,6 @@ class Item < ActiveRecord::Base
     end
   end
 
-
-  def self.markers(items)
-   Gmaps4rails.build_markers(items) do |item, marker|
-      marker.lat item.latitude
-      marker.lng item.longitude
-    end
-  end
 
   private
 
