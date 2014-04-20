@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   belongs_to :category
   geocoded_by :location
   reverse_geocoded_by :latitude, :longitude 
+  after_validation :geocode
 
   has_attached_file :image, 
                     :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
