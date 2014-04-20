@@ -1,13 +1,15 @@
 class Item < ActiveRecord::Base
   belongs_to :category
-  before_create :phone_integers_only
+  geocoded_by :location
+  reverse_geocoded_by :latitude, :longitude 
+  after_validation :geocode
 
   has_attached_file :image, 
                     :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
                     :default_url => ActionController::Base.helpers.asset_path('missing.png')
-
-  geocoded_by :location #this can be a method to pull in... 
-  after_validation :geocode, :if => :location_changed?
+                    # :s3_permissions => :private
+  
+  before_create :phone_integers_only
 
   validates :category_id, presence: true
   validates :location, presence: true
@@ -21,16 +23,14 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   # validates_attachment_size :image, :size => { :in => 0...10.kilobytes }
 
-  def self.search(search,category_id)
-    if search
-      where('latitude = ?', "#{search}")
-      where('longitude = ?', "#{search}")
-      where('miles = ?', "#{search}")
+    def self.search(category_id)
+    if category_id
       where('category_id = ?', "#{category_id}")
     else
       scoped
     end
   end
+
 
   private
 
