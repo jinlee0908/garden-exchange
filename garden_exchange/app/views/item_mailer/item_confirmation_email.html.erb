@@ -14,7 +14,7 @@
     <ol>
       <li>Confirm that the listing information below is correct. If not, please click on the link to edit your listing now.</li>
 
-      <li>When some one is interested in what you have to offer, you will receive an email from the Garden Exchange with their contact information and any other relevant information. Your listing will not be available to others once you have been contacted so please respond in a timely manner. Included in that initial email will be contact information if you are interested in a trade, a complete the trade option once you complete the transaction, and a cancel option to relist your item on the exchange if the trade does not work out.</li>
+      <li>When some one is interested in what you have to offer, you will receive an email from the Garden Exchange with their contact information and any other relevant information. Your listing will not be available to others once you have been contacted so please respond in a timely manner. Included in that initial email will be contact information if you are interested in a trade, an option to complete the trade once you complete the transaction, and a cancel option to relist your item on the exchange if the trade does not work out.</li>
 
       <li>Any items you have listed will expire automatically in seven days. If you would like to relist your item, please use the link below to reset the start date of your trade.</li>
 
@@ -24,17 +24,17 @@
     You listed the following on the Garden Exchange:
     <ul>
       <% @display_category = @item.category %>
-      <li><%= @display_category.category %></li>
+      <li>Category: <%= @display_category.category %></li>
       <li><%= @item.name %></li>
       <li><%= @item.description %></li>
     </ul>
-      <div>The location of this item is at: <%= @item.location %> </div>
+      <p>The location of this item is at: <%= @item.location %> </p>
       <% expiration_date = @item.created_at.days_since(7) %>
-      <div>You listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %></div>
-
-      <p>If you need to edit your item go to: </p>
-
-      <p> If you need to cancel your item go to: </p>
+      <p>Your listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %></p>
+      <% edit_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/edit" %>
+      <% cancel_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/cancel" %>
+      <p><a href=<%=edit_url%>>EDIT</a> what you listed.</p>
+      <p><a href=<%=cancel_url%>>CANCEL</a> what you listed.</p>
 
       <p>Thanks again for being a part of the Garden Exchange.</p>
  </body>

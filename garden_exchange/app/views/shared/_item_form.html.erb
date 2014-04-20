@@ -11,9 +11,9 @@
       
       <%= f.text_field :name, :placeholder => "What are you exchanging?" %>
       <%= f.text_field :description, :placeholder => "What do you want people to know about it?" %>
-      <%= f.text_field :location, :placeholder => "Where are you at?" %>
-      <%= f.email_field :email, :placeholder => "Add an email" %>
-      <%= f.telephone_field :phone, :placeholder => "Add a phone number" %>
+      <%= f.text_field :location, :placeholder => "Where are you at? ex. 1st and Main" %>
+      <%= f.email_field :email, :placeholder => "Contact me by email (add it here)" %>
+      <%= f.telephone_field :phone, :placeholder => "Contact me by text (add it here)" %>
 
       <%= f.submit "Save", class: "btn btn-default btn-block" %>
       <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>

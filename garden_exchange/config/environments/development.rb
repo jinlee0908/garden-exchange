@@ -27,6 +27,9 @@ GardenExchange::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # config for email testing
+  config.action_mailer.delivery_method = :letter_opener
+
   # config/environments/production.rb
   config.paperclip_defaults = {
   :storage => :s3,
