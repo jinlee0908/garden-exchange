@@ -9,16 +9,16 @@
 # Seeding the Category model with some test data - this only seeds the development 
 # env not the test one.
 
-test_categories = %w{Category? Artichokes Asparagus Beans Beets Broccoli
-              Cabbage Carrots Cauliflower Celery Chard Collards Corn
-              Cucumbers Eggplant Garlic Kale Kohlrabi Leeks Lettuce Melons
-              Mushrooms Onions Parsley Parsnips Peas Peppers Potatos Pumpkins
-              Radishes Rhubarb Shallots Spinach Squash Tomatoes Other}
+test_categories = ["Choose a category", "Artichokes", "Asparagus", "Beans",
+                    "Beets", "Broccoli", "Cabbage", "Carrots", "Cauliflower",
+                    "Celery", "Collards", "Corn", "Cucumbers", "Eggplant", 
+                    "Garlic", "Kale", "Kohlrabi", "Leeks", "Lettuce", "Melons",
+                    "Mushrooms", "Onions", "Parsley", "Parsnips", "Peas", "Peppers",
+                    "Potatos", "Pumpkins", "Radishes", "Rhubarb", "Shallots",
+                    "Spinach", "Squash", "Swiss Chard", "Tomatoes", "Other"] 
 
 Category.delete_all # clean out what is in there now
 
 test_categories.each do |i|
-  img = 100
-  Category.create(category: i, image_id: img)
-  img =+ 1
+  Category.create(category: i)
 end

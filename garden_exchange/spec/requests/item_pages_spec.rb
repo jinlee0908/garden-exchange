@@ -14,7 +14,7 @@ describe "Item Pages" do
   describe "create a new item" do
     before { visit new_item_path }
 
-    let(:submit) { "Add my item" }
+    let(:submit) { "Save" }
 
     describe "with invalid information" do
   
@@ -43,25 +43,25 @@ describe "Item Pages" do
         expect { click_button submit }.to change(Item, :count).by(1)
       end
     end
+  end
 
-    describe "editing an existing item" do
-      let(:item) { FactoryGirl.create(:item) }
-      let(:submit) { 'Save changes' }
-      before { visit edit_item_path(item) }
+  describe "editing an existing item" do
+    let(:item) { FactoryGirl.create(:item) }
+    let(:submit) { 'Save' }
+    before { visit edit_item_path(item) }
 
-      describe "edit page" do
-        it { should have_content('Edit your item') }
-        it { should have_title('Edit Item') }
-        it { should have_selector('form') }
-      end
+    describe "edit page" do
+      it { should have_content('Edit your item') }
+      it { should have_title('Edit Item') }
+      it { should have_selector('form') }
+    end
 
-      describe "with invalid information" do
-        before do 
-          click_button submit
-        end 
+    describe "with invalid information" do
+      before do
+        click_button submit
+      end 
 
-        it { should have_content('error') }
-      end
+      it { should have_content('error') }
     end
   end
 end

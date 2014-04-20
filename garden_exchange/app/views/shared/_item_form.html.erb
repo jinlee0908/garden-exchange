@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="form-group">
+    <%= form_for(@item) do |f| %>
+      <%= image_tag @item.image.url(:medium), class:'bg-primary img-item img-responsive', id:"image" %>
+
+      <%= f.file_field :image, id:"upload_image" %>
+
+      <%= render 'shared/error_messages' %>
+
+      <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
+      
+      <%= f.text_field :name, :placeholder => "What are you exchanging?" %>
+      <%= f.text_field :description, :placeholder => "What do you want people to know about it?" %>
+      <%= f.text_field :location, :placeholder => "Where are you at?" %>
+      <%= f.email_field :email, :placeholder => "Add an email" %>
+      <%= f.telephone_field :phone, :placeholder => "Add a phone number" %>
+
+      <%= f.submit "Save", class: "btn btn-default btn-block" %>
+      <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  // This handles changing the image when a user uploads a new one
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+      f=files[0]
+      // Only process image files.
+      if (f.type.match('image.*')) {
+      var reader = new FileReader();
+
+      reader.onload = (function(theFile) {
+        return function(e) {
+          document.getElementById("image").src=e.target.result;
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+      }
+    }
+  document.getElementById('upload_image').addEventListener('change', handleFileSelect, false);
+
+  // This handles changing the image when the user chooses a category.
+  function handleCategorySelect(evt) {
+    new_category = document.getElementById('item_category_id').value;
+    current_src = document.getElementById('image').src;
+    new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/berries.png' // + new_category;
+    document.getElementById("image").src=new_src
+  }
+  document.getElementById('item_category_id').addEventListener('change', handleCategorySelect, false);
+</script>
+

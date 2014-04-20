@@ -1,27 +1,4 @@
 <% provide(:title, 'What Item') %>
 
 <h1>This is the item you just created.</h1>
-
-<div class="form-group span6">
-  <%= form_for @item do |f| %>
-
-    <%= render 'shared/error_messages' %>
-
-    <%= f.label  :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label  :description %>
-    <%= f.text_field :description %>
-
-    <%= f.label  :location %>
-    <%= f.text_field :location%>
-
-    <%= f.label  :email %>
-    <%= f.email_field :email %>
-
-    <%= f.label  :phone %>
-    <%= f.telephone_field :phone %>
-
-    <%= f.submit "Save changes", class: "btn btn-default span6" %>
-  <% end %>
-<div>
+<%= render 'shared/item_form' %>
