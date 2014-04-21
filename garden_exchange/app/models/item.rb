@@ -25,7 +25,21 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   # validates_attachment_size :image, :size => { :in => 0...10.kilobytes }
 
-    def self.search(category_id)
+  # state machine implementation.
+  state_machine :state, initial: :active do
+
+    event :offer_made do # user
+      transition :active => :pending 
+    end
+
+    event :cancel do
+      # add something here to delete aws image
+      transition all - [:active, :pending] => :inactive
+    end
+
+  end
+
+  def self.search(category_id)
     if category_id
       where('category_id = ?', "#{category_id}")
     else

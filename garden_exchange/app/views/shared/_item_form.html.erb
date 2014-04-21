@@ -15,7 +15,7 @@
       <%= f.email_field :email, :placeholder => "Contact me by email (add it here)" %>
       <%= f.telephone_field :phone, :placeholder => "Contact me by text (add it here)" %>
 
-      <%= f.submit "Save", class: "btn btn-default btn-block" %>
+      <%= f.submit "Save Item", class: "btn btn-default btn-block" %>
       <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
     <% end %>
   </div>
@@ -44,10 +44,11 @@
 
   // This handles changing the image when the user chooses a category.
   function handleCategorySelect(evt) {
-    new_category = document.getElementById('item_category_id').value;
-    current_src = document.getElementById('image').src;
-    new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/berries.png' // + new_category;
-    document.getElementById("image").src=new_src
+
+      new_category = document.getElementById('item_category_id').value;
+      current_src = document.getElementById('image').src;
+      new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/berries.png' // + new_category;
+      document.getElementById("image").src=new_src
   }
   document.getElementById('item_category_id').addEventListener('change', handleCategorySelect, false);
 </script>

@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    # add something to check state here
   end
 
   def update
@@ -45,8 +46,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    # /items/id item_path(item)
-    # route that user get to from email confirmation to
+    @item = Item.find(params[:id])
+    @item.fire_state_event(:cancel)
   end
 
   

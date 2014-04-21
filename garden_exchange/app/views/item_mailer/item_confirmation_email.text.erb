@@ -20,7 +20,7 @@ The location of this item is at: <%= @item.location %>
 You listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %>
 
 <% edit_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/edit" %>
-<% cancel_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/cancel" %>
+<% cancel_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/edit" %>
 If you need to edit your item go to: <%=edit_url%>
 
 If you need to cancel your item go to: <%=cancel_url%>
