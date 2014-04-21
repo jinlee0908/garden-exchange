@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   belongs_to :category
+  has_many :trades
   geocoded_by :location
   reverse_geocoded_by :latitude, :longitude 
   after_validation :geocode
