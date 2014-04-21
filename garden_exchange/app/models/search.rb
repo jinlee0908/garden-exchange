@@ -7,7 +7,7 @@ class Search
       marker.lat item.latitude
       marker.lng item.longitude
       marker.title item.category.category
-      marker.infowindow "<b>#{item.name}</b>"
+      marker.infowindow "<b><a href=trades/new?item_id=#{item.id}>#{item.name}</a></b>"
     end
   end
 
