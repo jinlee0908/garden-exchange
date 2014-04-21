@@ -10,6 +10,7 @@ class Trade < ActiveRecord::Base
             allow_blank: true
   validate :must_have_trade_email_or_phone_num
 
+
   # state_machine initial: :new do
   #   state :new
   #   state :pending
@@ -59,13 +60,14 @@ class Trade < ActiveRecord::Base
   private
 
   def must_have_trade_email_or_phone_num
-    if self.trade_email.empty? && self.phone.empty?
+    if self.trade_email.empty? && self.phone_num.empty?
       errors.add(:base, 'You must include an email or a phone number.')
     end 
   end
 
   def phone_num_integers_only
     unless self.phone_num.empty?
-      self.phone = phone_num.gsub(/\D/,"")
+      self.phone_num = phone_num.gsub(/\D/,"")
     end
   end
+end

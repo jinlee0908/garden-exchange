@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+ </head>
+
+ <body>
+    <h1> Your harvest has been requested!</h1>
+
+    <p>
+    Thanks for listing some of this season's harvest up on the garden exchange. 
+    </p>
+
+    <ol>
+      <li>Below is a refresher of what you listed</li>
+
+      <li>Please reach out to the person requesting your harvest and set up how you'd like to make the exchange</li>
+
+      <li>Once your harvest has exchanged hands, please click the complete option below.</li>
+
+      <li>If you for some reason the exchange does not work out, to make your harvest available again, please use the make available option below to allow to posting to be available again on Garden Exchange.</li>
+    </ol>
+    <p> Here's who's interested:</p>
+    <ul>
+      <li>Name: <%= @trade.name %></li>
+      <li><%= @trade.phone_num %></li>
+      <li><%= @trade.trade_email %></li>
+    </ul>
+
+    <p>You listed the following on the Garden Exchange:</p>
+    <ul>
+      <% @display_category = @trade.item.category %>
+      <li>Category: <%= @display_category.category %></li>
+      <li><%= @trade.item.name %></li>
+      <li><%= @trade.item.description %></li>
+    </ul>
+      <% expiration_date = @item.created_at.days_since(7) %>
+      <p>Your listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %></p>
+      <% complete_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/edit" %>
+      <% make_available_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/delete" %>
+      <p><a href=<%=complete_url%>>COMPLETE</a> what you listed.</p>
+      <p><a href=<%=make_available_url%>>MAKE AVAILABLE</a> what you listed.</p>
+
+      <p>Thanks again for being a part of the Garden Exchange.</p>
+ </body>
+</html>
