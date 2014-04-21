@@ -9,7 +9,6 @@ class SearchController < ApplicationController
       else
         @items = Item.all
       end
-          puts params.inspect
       @locations = Search.markers(@items)
 
     end
