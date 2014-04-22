@@ -11,6 +11,5 @@ class Search
     end
   end
 
-  private
 
 end

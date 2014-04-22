@@ -11,50 +11,51 @@ class Trade < ActiveRecord::Base
   validate :must_have_trade_email_or_phone_num
 
 
-  # state_machine initial: :new do
-  #   state :new
-  #   state :pending
-  #   state :cancel
-  #   state :complete
+  state_machine initial: :new do
+    state :new
+    state :pending
+    state :cancel
+    state :complete
 
-  #   event :request_made do
-  #     transition :new => :pending
-  #   end
+    event :request_made do
+      transition :new => :pending
+    end
 
-  #   event :complete do
-  #     transition :pending => :complete
-  #   end
+    event :complete do
+      transition :pending => :complete
+    end
 
-  #   event :cancel do
-  #     transition [:new, :pending] => :cancel
-  #   end
+    event :cancel do
+      transition [:new, :pending] => :cancel
+    end
 
-  #   event :reject do
-  #     transition :pending => :new
-  #   end
+    event :reject do
+      transition :pending => :new
+    end
 
     # state :new do
-    #   def new_item
-    #     true if @item.save?
+    #   def is_new?
+    #     true
+    #     # true if @item.save?
     #   end
     # end
 
     # state :pending do
-    #   def new_trade
+    # def pending
     #   true if @trade.save? 
     #   end
     # end
 
-    # state :cancel do
-    #   def 
-    #   end
-    # end
+   #  state :cancel do
+   #    def 
+   #    end
+   #  end
 
-    # state :complete do
-    #   def 
-    #   end
-    # end    
-   # end
+   #  state :complete do
+   #    def 
+   #    end
+   #  end    
+   end
 
 
   private

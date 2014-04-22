@@ -1,16 +1,11 @@
 <%= form_for :search, method: :get, id:'items_search' do |f| %>
 
-<!--   <%= f.hidden_field @current_location_by_ip %> -->
-
   <div>
     <%= f.submit "Search", class: "btn btn-large btn-primary" %>
   </div>
 
   <div>
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude %>
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude %>
+    <%=f.text_field :location %>
   </div>
 
 

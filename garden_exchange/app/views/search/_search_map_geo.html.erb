@@ -7,10 +7,24 @@
     map = document.getElementById('area');
 
     if(navigator.geolocation) {
+      geocoder = new google.maps.Geocoder();
       navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = google.maps.LatLng(
-          document.getElementById('search_latitude').value = position.coords.latitude,
-          document.getElementById('search_longitude').value =position.coords.longitude);
+        var latlng = new google.maps.LatLng(
+        position.coords.latitude, position.coords.longitude
+      );
+
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            document.getElementById('search_location').value =
+              results[0].formatted_address;
+          } else {
+            alert('No results found');
+          }
+        } else {
+          alert('Geocoder failed due to: ' + status);
+        }
+      });
 
       }, function() {
         handleNoGeolocation(true);

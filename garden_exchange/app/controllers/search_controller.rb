@@ -1,33 +1,28 @@
 class SearchController < ApplicationController
 
   def index
-      if params[:search].present?
-        found_address=latlong(params[:search][:latitude], params[:search][:longitude])
-        selected_miles = miles(params[:search][:miles])
-        addresses = Item.near(found_address, selected_miles)
-        @items = addresses.search(params[:item][:category_id]) 
-      else
-        @items = Item.all
-      end
-      @locations = Search.markers(@items)
-
+    if params[:search].present?
+      selected_miles = miles(params[:search][:miles])
+      addresses = Item.near(params[:search][:location], selected_miles)
+      @items = addresses.search(params[:item][:category_id]) && addresses.where(state: :active)
+    else
+      @items = Item.where(state: :active)
     end
+    @locations = Search.markers(@items)
+  end
 
   def search_list
-    @items = Item.all
+    if params[:search].present?
+      selected_miles = miles(params[:search][:miles])
+      addresses = Item.near(params[:search][:location], selected_miles)
+      @items = addresses.search(params[:item][:category_id]) && addresses.where(state: :active)
+    else
+      @items = Item.where(state: :active)
+    end
   end
 
 
   private
-
-  def latlong(latitude, longitude)
-    search_address = Geocoder.search([latitude, longitude])
-    unless search_address[0].nil?
-      search_address[0].data["formatted_address"]
-    else
-      #ToDo - come up an alternate or default if something query...
-    end  
-  end
 
   def miles(miles)
     if params[:search][:miles].empty?
@@ -36,7 +31,6 @@ class SearchController < ApplicationController
       params[:search][:miles]
     end
   end
-
 
   def search_params
     params.require(:search).permit(:latitidue, :longitude, :miles)
