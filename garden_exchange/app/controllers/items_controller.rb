@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @curent_location = latlong(params[:latitude], params[:longitude])
+
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "Your item is on the exchange!"

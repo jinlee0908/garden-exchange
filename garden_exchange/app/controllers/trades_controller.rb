@@ -1,7 +1,7 @@
 class TradesController < ApplicationController
 
   def new
-    @item = Item.find(params[:item_id])
+    @item = Item.find_by(id: params[:item_id])
     @trade = @item.trades.new
   end
 
