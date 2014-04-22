@@ -35,7 +35,7 @@ class Item < ActiveRecord::Base
 
     event :cancel do
       # add something here to delete aws image
-      transition all - [:active, :pending] => :inactive
+      transition :active => :inactive
     end
 
   end
@@ -54,7 +54,8 @@ class Item < ActiveRecord::Base
       search_address[0].data["formatted_address"]
     else
       #ToDo - come up an alternate or default if something query...
-    end  
+    end
+  end
 
   private
 
@@ -69,7 +70,4 @@ class Item < ActiveRecord::Base
         self.phone = phone.gsub(/\D/,"")
       end
     end
-
-
-  end
 end

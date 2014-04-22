@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def create
     @curent_location = latlong(params[:latitude], params[:longitude])
-    binding.pry
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "Your item is on the exchange!"
@@ -27,7 +26,13 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    # add something to check state here
+    if @item.state == :inactive
+      flash[:error] = "This item is no longer available."
+      redirect_to root_url
+    else
+      flash[:error] = "This item's state is #{@item.state}"
+      render 'edit'
+    end
   end
 
   def update
@@ -50,6 +55,8 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.fire_state_event(:cancel)
+    flash[:success] = "Your item was removed from the exchange."
+    redirect_to root_url
   end
 
   
