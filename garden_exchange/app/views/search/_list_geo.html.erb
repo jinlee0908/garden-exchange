@@ -1,0 +1,30 @@
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true">
+</script>
+
+
+
+
+<div id="geo"></div>
+
+
+
+<script>   
+  map = document.getElementById('geo');
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(
+        document.getElementById('search_latitude').value = position.coords.latitude,
+        document.getElementById('search_longitude').value =position.coords.longitude);
+      
+    }, function() {
+      'Error: The Geolocation service failed.';
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    'Error: Your browser doesn\'t support geolocation.';
+  }
+</script>
+
+

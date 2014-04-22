@@ -29,48 +29,5 @@
 
 
 
-<script>
-
-  var map;
-
-  function initialize() {
-   
-    map = document.getElementById('area');
-
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = google.maps.LatLng(
-          document.getElementById('search_latitude').value = position.coords.latitude,
-          document.getElementById('search_longitude').value =position.coords.longitude);
-
-      }, function() {
-        handleNoGeolocation(true);
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleNoGeolocation(false);
-    }
-  }
-
-  function handleNoGeolocation(errorFlag) {
-    if (errorFlag) {
-      var content = 'Error: The Geolocation service failed.';
-    } else {
-      var content = 'Error: Your browser doesn\'t support geolocation.';
-    }
-
-    var options = {
-      map: map,
-      position: new google.maps.LatLng(45.5424364, -122.654422),
-      content: content
-    };
-
-    var infowindow = new google.maps.InfoWindow(options);
-    map.setCenter(options.position);
-  }
-
-  google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
 
 

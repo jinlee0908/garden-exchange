@@ -1,16 +1,11 @@
 class TradesController < ApplicationController
 
-  def index
-  end
-
   def new
-    puts params.inspect
     @item = Item.find(params[:item_id])
     @trade = @item.trades.new
   end
 
   def create
-    puts params.inspect
     @item = Item.find_by(id: params[:trade][:item_id])
     @trade = @item.trades.create(trade_params)
     if @trade.save!
