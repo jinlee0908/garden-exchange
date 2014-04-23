@@ -1,11 +1,14 @@
 GardenExchange::Application.routes.draw do
   root 'search#index'
-  match '/list', to: 'search#search_list', via: 'get'
+  match '/list', to: 'search#search_list',             via: 'get'
+  # match '/trades', to: "trades#new?item_id=#{params[item_id]}", via: 'get'
   
   # get "static_pages/home"
   # get "static_pages/search_list"
-  resources :items
-  resources :trades
+  resources :items do
+    resources :trades
+  end
+
   # get "items/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
