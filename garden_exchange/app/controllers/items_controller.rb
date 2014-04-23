@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    if @item.state == :inactive
+    if @item.state == 'inactive'
       flash[:error] = "This item is no longer available."
       redirect_to root_url
     else
@@ -53,9 +53,14 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.fire_state_event(:cancel)
-    flash[:success] = "Your item was removed from the exchange."
-    redirect_to root_url
+    if @item.state == 'inactive'
+      flash[:success] = "This item was already removed."
+      redirect_to root_url
+    else
+      @item.fire_state_event(:cancel)
+      flash[:success] = "Your item was removed from the exchange."
+      redirect_to root_url
+    end
   end
 
   

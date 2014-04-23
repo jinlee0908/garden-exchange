@@ -4,8 +4,8 @@ describe Item do
 
   before { @item = Item.new(name: "Example Item", description: "This is an example.",
                             location: "123 First Street, Portland Oregon", email: "example@example.com",
-                            phone: "123-456-7890", trade_status: "", image_id: "",
-                            category_id: 123 ) }
+                            phone: "123-456-7890", state: "active",
+                            category_id: 12 ) }
 
   subject { @item }
 
@@ -14,8 +14,7 @@ describe Item do
   it { should respond_to(:location) }
   it { should respond_to(:email) }
   it { should respond_to(:phone) }
-  it { should respond_to(:trade_status) }
-  it { should respond_to(:image_id) }
+  it { should respond_to(:state) }
   it { should respond_to(:category_id) }
 
   it { should be_valid }

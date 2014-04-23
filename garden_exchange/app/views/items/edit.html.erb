@@ -2,3 +2,10 @@
 
 <h3>Edit your item on the exchange.</h3>
 <%= render 'shared/item_form' %>
+
+<script>
+$(document).ready( function () { 
+    current_src = document.getElementById('image').src
+    if (current_src == 'http://localhost:3000/assets/missing.png') { handleCategorySelect(); }
+  });
+</script>
