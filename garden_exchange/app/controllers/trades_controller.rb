@@ -27,6 +27,21 @@ class TradesController < ApplicationController
     end
   end
 
+  def update
+    if @item.state == :pending
+    @trade.fire_events(:complete)
+    @item.fire_events(:inactive)
+    flash[:success] = 'Successful Exchange!'
+    end
+  end
+
+  def destroy
+    if @trade.state == :pending
+      @trade.fire_events(:cancel)
+      @item.fire_events(:inactive)
+    end
+  end
+
 
   private
 

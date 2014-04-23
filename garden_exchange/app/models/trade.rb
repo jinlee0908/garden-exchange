@@ -27,12 +27,9 @@ class Trade < ActiveRecord::Base
     end
 
     event :cancel do
-      transition [:new, :pending] => :cancel
+      transition :pending => :cancel
     end
 
-    event :reject do
-      transition :pending => :new
-    end
 
     # state :new do
     #   def is_new?

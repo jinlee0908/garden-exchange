@@ -1,16 +1,17 @@
 class SearchController < ApplicationController
 
   def index
-    selected_miles = miles(params[:search][:miles])
-    category_id = category(params[:item][:category_id])
-    if params[:search].empty?
-      @items = Item.where(state: :active)
-    elsif params[:search].present? && params[:item][:category_id] == '1'
+    if params[:search].present? && params[:item][:category_id] == '1'
+      selected_miles = miles(params[:search][:miles])
       addresses = Item.near(params[:search][:location], selected_miles)
       @items = addresses.where(:state => :active)
-    else
+    elsif params[:search].present? && params[:item][:category_id] != '1'
+      selected_miles = miles(params[:search][:miles])
+      category_id = category(params[:item][:category_id])
       addresses = Item.near(params[:search][:location], selected_miles)
       @items = addresses.where({:state => :active, :category_id => category_id.to_i})
+    else
+      @items = Item.where(state: :active)
     end
     @locations = Search.markers(@items)
   end
@@ -36,6 +37,10 @@ class SearchController < ApplicationController
     else
       params[:search][:miles]
     end
+  end
+
+  def category(category_id)
+    params[:item][:category_id]
   end
 
 

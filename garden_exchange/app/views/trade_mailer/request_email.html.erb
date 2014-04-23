@@ -35,8 +35,8 @@
     </ul>
       <% expiration_date = @item.created_at.days_since(7) %>
       <p>Your listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %></p>
-      <% complete_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/edit" %>
-      <% make_available_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/delete" %>
+      <% complete_url = "http://" + ENV['DOMAIN_URL'] + "/items/"+ @items.id.to_s +"/trades/" + @trade.id.to_s + "/update" %>
+      <% make_available_url = "http://" + ENV['DOMAIN_URL'] + "/items/"+ @items.id.to_s + "/trades/" + @trade.id.to_s + "/delete" %>
       <p><a href=<%=complete_url%>>COMPLETE</a> what you listed.</p>
       <p><a href=<%=make_available_url%>>MAKE AVAILABLE</a> what you listed.</p>
 
