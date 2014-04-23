@@ -4,7 +4,8 @@ class SearchController < ApplicationController
     if params[:search].present?
       selected_miles = miles(params[:search][:miles])
       addresses = Item.near(params[:search][:location], selected_miles)
-      @items = addresses.search(params[:item][:category_id]) && addresses.where(state: :active)
+      all_items = addresses.search(params[:item][:category_id])
+      @items = all_items.where(state: :active)
     else
       @items = Item.where(state: :active)
     end

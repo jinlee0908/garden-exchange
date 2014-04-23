@@ -43,19 +43,14 @@ class Item < ActiveRecord::Base
   def self.search(category_id)
     if category_id
       where('category_id = ?', "#{category_id}")
-    else
+      unless "#{category_id}" == 1
+        scoped
+      end
+    else  
       scoped
     end
   end
 
-  def latlong(latitude, longitude)
-    search_address = Geocoder.search([latitude, longitude])
-    unless search_address[0].nil?
-      search_address[0].data["formatted_address"]
-    else
-      #ToDo - come up an alternate or default if something query...
-    end
-  end
 
   private
 
