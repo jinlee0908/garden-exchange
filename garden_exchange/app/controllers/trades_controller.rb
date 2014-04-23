@@ -14,14 +14,13 @@ class TradesController < ApplicationController
     if @trade.save
       @trade.fire_events(:request_made)
       @item.fire_events(:offer_made)
-      # flash[:success] = 'Request sent!'
-      redirect_to @trade, alert:'Request sent!'
+      flash[:success] = 'Request sent!'
       unless @item.email.empty?
         TradeMailer.request_email(@item, @trade).deliver
-        redirect_to list_url
       else
         #send test
       end
+      redirect_to root_url
     else
       # render 'new'
       # binding.pry
