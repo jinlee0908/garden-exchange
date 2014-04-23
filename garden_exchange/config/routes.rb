@@ -1,7 +1,9 @@
 GardenExchange::Application.routes.draw do
   root 'search#index'
-  match '/list', to: 'search#search_list',             via: 'get'
-  # match '/trades', to: "trades#new?item_id=#{params[item_id]}", via: 'get'
+  match '/list',                 to: 'search#search_list',   via: 'get'
+  match 'trades/:id/available',  to:'trades#available', via: 'get'
+  match 'trades/:id/complete',   to:'trades#complete',  via: 'get'   
+ 
   
   # get "static_pages/home"
   # get "static_pages/search_list"

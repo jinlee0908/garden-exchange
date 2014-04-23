@@ -27,19 +27,25 @@ class TradesController < ApplicationController
     end
   end
 
-  def update
-    if @item.state == :pending
-    @trade.fire_events(:complete)
-    @item.fire_events(:inactive)
+
+
+  def complete
+    @trade = Trade.find_by(id: params[:id])
+    @item = Item.find(@trade.item_id)
+    @trade.fire_events(:completed)
+    @item.fire_events(:completed)
     flash[:success] = 'Successful Exchange!'
-    end
+    redirect_to root_url
   end
 
-  def destroy
+  def available
+    @trade = Trade.find_by(id: params[:id])
+    @item = Item.find(@trade.item_id)
     if @trade.state == :pending
       @trade.fire_events(:cancel)
-      @item.fire_events(:inactive)
+      @item.fire_events(:reject)
     end
+    redirect_to root_url
   end
 
 

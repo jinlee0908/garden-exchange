@@ -22,7 +22,7 @@ class Trade < ActiveRecord::Base
       transition :new => :pending
     end
 
-    event :complete do
+    event :completed do
       transition :pending => :complete
     end
 

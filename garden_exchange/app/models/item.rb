@@ -38,6 +38,16 @@ class Item < ActiveRecord::Base
       transition :active => :inactive
     end
 
+    event :completed do
+      # add something here to delete aws image
+      transition :pending => :complete
+    end
+
+    event :reject do
+      # add something here to delete aws image
+      transition :pending => :active
+    end
+
   end
 
   def self.search(category_id)
