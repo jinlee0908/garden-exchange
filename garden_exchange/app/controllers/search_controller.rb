@@ -39,14 +39,6 @@ class SearchController < ApplicationController
   end
 
 
-  def category(category_id)
-    params[:item][:category_id]
-  end
-
-  def state(state)
-    :active
-  end
-
   def search_params
     params.require(:search).permit(:latitidue, :longitude, :miles)
   end

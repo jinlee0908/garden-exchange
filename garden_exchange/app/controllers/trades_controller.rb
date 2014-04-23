@@ -22,11 +22,8 @@ class TradesController < ApplicationController
       end
       redirect_to root_url
     else
-      # render 'new'
-      # binding.pry
       flash.now[:notice] = "Request can not be sent, please enter information."
       render 'new'
-      # redirect_to "new?item_id=#{params[:trade][:item_id]}"
     end
   end
 
