@@ -22,12 +22,30 @@ class TradesController < ApplicationController
       end
       redirect_to root_url
     else
-      # render 'new'
-      # binding.pry
       flash.now[:notice] = "Request can not be sent, please enter information."
       render 'new'
-      # redirect_to "new?item_id=#{params[:trade][:item_id]}"
     end
+  end
+
+
+
+  def complete
+    @trade = Trade.find_by(id: params[:id])
+    @item = Item.find(@trade.item_id)
+    @trade.fire_events(:completed)
+    @item.fire_events(:completed)
+    flash[:success] = 'Successful Exchange!'
+    redirect_to root_url
+  end
+
+  def available
+    @trade = Trade.find_by(id: params[:id])
+    @item = Item.find(@trade.item_id)
+    if @trade.state == :pending
+      @trade.fire_events(:cancel)
+      @item.fire_events(:reject)
+    end
+    redirect_to root_url
   end
 
 
