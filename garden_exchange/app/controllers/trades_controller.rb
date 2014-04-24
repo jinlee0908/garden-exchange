@@ -10,7 +10,6 @@ class TradesController < ApplicationController
   def create
     @item = Item.find_by(id: params[:trade][:item_id])
     @trade = @item.trades.create(trade_params)
-    # binding.pry
     if @trade.save
       @trade.fire_events(:request_made)
       @item.fire_events(:offer_made)
@@ -22,12 +21,10 @@ class TradesController < ApplicationController
       end
       redirect_to root_url
     else
-      flash.now[:notice] = "Request can not be sent, please enter information."
+      flash.now[:notice] = "Request can not be sent, please enter missing information."
       render 'new'
     end
   end
-
-
 
   def complete
     @trade = Trade.find_by(id: params[:id])
@@ -41,10 +38,9 @@ class TradesController < ApplicationController
   def available
     @trade = Trade.find_by(id: params[:id])
     @item = Item.find(@trade.item_id)
-    if @trade.state == :pending
       @trade.fire_events(:cancel)
       @item.fire_events(:reject)
-    end
+    flash[:success] = 'Your item is available again!'
     redirect_to root_url
   end
 
