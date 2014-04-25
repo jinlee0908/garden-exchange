@@ -128,8 +128,6 @@ footer {
   }
 }
 
-
-
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -142,6 +140,7 @@ input, textarea, select, .uneditable-input {
 #image_container {
   max-width: auto;
   max-height: 200px;
+  margin: 0% 0% 10% 0%;
 }
 
 #image_container_request {

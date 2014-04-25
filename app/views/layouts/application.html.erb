@@ -8,13 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <img src="lushgarden4.png" class="img-responsive" alt="Responsive image">
   <%= render 'layouts/header'%>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
-<%= yield %>
-<%= debug(params) if Rails.env.development? %>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<div class = "container">
+  <%= yield %>
+</div> <!-- container -->
+  <%= debug(params) if Rails.env.development? %>
+
+
 </body>
 </html>
 

@@ -3,12 +3,11 @@
 
       <%=f.text_field :location, :placeholder => 'Where are you?' %>
 
-      <%= f.number_field :miles, :placeholder => 'How far do you want to look? (max 99 miles)' %>
+      <%= f.number_field :miles, in: 1.0..99.0, :placeholder => 'How far do you want to look? (max 99 miles)' %>
 
       <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
 
       <%= f.submit "Search", class: "btn btn-default btn-block" %>
-
   <% end %>
 </div>
 

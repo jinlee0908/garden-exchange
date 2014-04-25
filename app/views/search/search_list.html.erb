@@ -1,9 +1,8 @@
 <% provide(:title,'Search List') %>
 
-<div class="container">
-  <%= render 'show_list' %>
-    <%= will_paginate @items %>
-  <%= render 'shared/search_form' %>
-  <%= render 'list_geo'%>
-</div>
+<%= render 'show_list' %>
+  <%= will_paginate @items %>
+<%= render 'shared/search_form' %>
+<%= render 'list_geo'%>
+
 
