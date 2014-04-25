@@ -1,5 +1,3 @@
-
-
 @import "bootstrap";
 
 /*   mixins, variables, etc.  */
@@ -21,6 +19,8 @@ html {
 
 body {
   padding: 1%;
+  background-image: image-url('lushgarden4.png');
+  background-size: 100%;
 }
 
 section {
@@ -35,6 +35,8 @@ textarea {
 .container {
   max-width: 300px;
   margin-top: 50px;
+  background-color: #fff;
+  background-color: rgba(255,255,255,0.65);
 }
 
 .center {
@@ -66,6 +68,7 @@ h2 {
   font-weight: normal;
   color: $grayLight;
 }
+
 
 p {
   font-size: 1.1em;
@@ -135,12 +138,13 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+  text-size: 8px;
 }
 
 #image_container {
   max-width: auto;
   max-height: 200px;
-  margin: 0% 0% 10% 0%;
+  margin: 20% 0% 10% 0%;
 }
 
 #image_container_request {
@@ -178,6 +182,8 @@ input {
   height: auto !important;
 }
 
+
+
 #error_explanation {
   color: #f00;
   ul {
@@ -212,8 +218,3 @@ input {
 #geo img{
   max-width: 0%;
 }
-
-
-
-
-
