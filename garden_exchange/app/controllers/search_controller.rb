@@ -20,11 +20,11 @@ class SearchController < ApplicationController
   def search_list
     if params[:search].present?
       selected_miles = miles(params[:search][:miles])
-      addresses = Item.near(params[:search][:location], selected_miles)
+      addresses = Item.near(params[:search][:location], selected_miles, :order => :distance)
       selected_category = addresses.search(params[:item][:category_id])
-      @items = selected_category.where(state: :active)
+      @items = selected_category.where(state: :active).paginate(:per_page => 10, :page => params[:page])
     else
-      @items = Item.where(state: :active)
+      @items = Item.where(state: :active).paginate(:per_page => 10, :page => params[:page])
     end
   end
 

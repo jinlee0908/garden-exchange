@@ -1,26 +1,16 @@
-<%= form_for :search, method: :get, id:'items_search' do |f| %>
+<div="form-group">
+  <%= form_for :search, method: :get, id:'items_search' do |f| %>
 
-  <div>
-    <%= f.submit "Search", class: "btn btn-large btn-primary" %>
-  </div>
+      <%=f.text_field :location, :placeholder => 'Where are you?' %>
 
-  <div>
-    <%=f.text_field :location %>
-  </div>
+      <%= f.text_field :miles, :placeholder => 'How far do you want to look? (max 99 miles)' %>
 
+      <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
 
-  <div>
-    <%= f.label :miles %>
-    <%= f.text_field :miles %>
-  </div>
+      <%= f.submit "Search", class: "btn btn-default btn-block" %>
 
-  <div>
-    <%= f.label :category %>
-    <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
-  </div>
-
-
-<% end %>
+  <% end %>
+</div>
 
 
 
