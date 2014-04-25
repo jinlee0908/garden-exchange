@@ -3,7 +3,7 @@
 
       <%=f.text_field :location, :placeholder => 'Where are you?' %>
 
-      <%= f.text_field :miles, :placeholder => 'How far do you want to look? (max 99 miles)' %>
+      <%= f.number_field :miles, :placeholder => 'How far do you want to look? (max 99 miles)' %>
 
       <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
 
