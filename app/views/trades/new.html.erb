@@ -4,3 +4,22 @@
 
   <%= render 'item_show'%>
   <%= render 'trade_form' %>
+
+</div>
+
+<script>
+  // This handles changing the image when the user chooses a category.
+  function handleCategorySelect(evt) {
+    i = document.getElementById('item_category');
+    new_category = i.textContent;
+    new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/' + new_category + '.png';
+    document.getElementById("image").src=new_src
+  };
+
+  $(document).ready( function () { 
+    initial_src = document.getElementById('image').src
+    match_src = '<%= ENV['DOMAIN_URL'] %>' + '/assets/missing.png'
+    if (initial_src == match_src) { handleCategorySelect(); }
+  });
+
+</script>
