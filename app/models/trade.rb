@@ -3,7 +3,9 @@ class Trade < ActiveRecord::Base
   before_create :phone_num_integers_only
   validates :item_id, presence: true
   validates :name, presence: true
-  validates :comment, presence: true
+  validates :comment, presence: true,
+                      length:   { maximum: 140, too_long: "%{count} characters
+                                  is the maximum allowed." }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :trade_email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
   validates :phone_num,  
