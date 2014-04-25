@@ -7,4 +7,12 @@ FactoryGirl.define do
     email "example@example.com"
     phone ""
   end
+
+  factory :trade do
+    name "Tipsy"
+    trade_email "tipsy@spider.com"
+    phone_num "503 123-4567"
+    comment "tipsy is cool"
+    item
+  end
 end
