@@ -1,6 +1,11 @@
+
+
 @import "bootstrap";
 
+/*   mixins, variables, etc.  */
+
 $grayMediumLight: #eaeaea;
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -26,8 +31,10 @@ textarea {
   resize: vertical;
 }
 
+
 .container {
   max-width: 300px;
+  margin-top: 50px;
 }
 
 .center {
@@ -67,10 +74,33 @@ p {
 
 /* header */
 
-header {
-  background-color: $grayDarker;
-  color: $grayLight;
+
+#logo{
+  float: left;
+  margin-right: 10px;
+  font-size: 1em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height:1;
+
+  &:hover{
+    color: white;
+    text-decoration: none;
+  }
 }
+
+header {
+  background-color: #cc504e;
+  color: $grayDarker;
+}
+
+.header_container {
+  max-width: 300px;
+}
+
 
 /* footer */
 
@@ -112,6 +142,11 @@ input, textarea, select, .uneditable-input {
 #image_container {
   max-width: auto;
   max-height: 200px;
+}
+
+#image_container_request {
+  max-width: auto;
+  max-height: 20em;
 }
 
 .imageClip {
@@ -166,11 +201,20 @@ input {
   margin-top: 45px;
   @include box-sizing;
 }
+
+/* google map for search map */
+
 #area img{
   max-width: inherit;
 }
 
+/* gelocation - to ensure map is instatiated without displaying a map */
+
 #geo img{
   max-width: 0%;
 }
+
+
+
+
 
