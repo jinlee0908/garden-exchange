@@ -32,7 +32,6 @@ describe "Item Pages" do
     describe "with valid information" do
       before do
         select "Kale", from: "item_category_id"
-        fill_in "Name", with: "Curly Kale"
         fill_in "Description", with: "I have lots of Kale. Come get some."
         fill_in "Location", with: "17th and Pettygrove Portland Oregon" 
         fill_in "Email", with: "example@example.com"

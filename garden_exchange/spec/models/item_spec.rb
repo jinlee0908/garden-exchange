@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe Item do 
 
-  before { @item = Item.new(name: "Example Item", description: "This is an example.",
+  before { @item = Item.new( description: "This is an example.",
                             location: "123 First Street, Portland Oregon", email: "example@example.com",
                             phone: "123-456-7890", state: "active",
                             category_id: 12 ) }
 
   subject { @item }
 
-  it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:location) }
   it { should respond_to(:email) }

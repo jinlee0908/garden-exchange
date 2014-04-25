@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
       flash[:error] = "This item is no longer available."
       redirect_to root_url
     else
-      flash[:error] = "This item's state is #{@item.state}"
       render 'edit'
     end
   end

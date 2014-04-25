@@ -5,7 +5,8 @@
 
 <script>
 $(document).ready( function () { 
-    current_src = document.getElementById('image').src
-    if (current_src == 'http://localhost:3000/assets/missing.png') { handleCategorySelect(); }
+    initial_src = document.getElementById('image').src
+    match_src = '<%= ENV['DOMAIN_URL'] %>' + '/assets/missing.png'
+    if (initial_src == match_src) { handleCategorySelect(); }
   });
 </script>
