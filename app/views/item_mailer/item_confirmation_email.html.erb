@@ -30,7 +30,7 @@
       <p>The location of this item is at: <%= @item.location %> </p>
       <% expiration_date = @item.created_at.days_since(7) %>
       <p>Your listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %></p>
-      <% edit_url = "http://" + ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/edit" %>
+      <% edit_url = ENV['DOMAIN_URL'] + "/items/" + @item.id.to_s + "/edit" %>
       <p><a href=<%=edit_url%>>EDIT or CANCEL</a> what you listed.</p>
 
       <p>Thanks again for being a part of the Garden Exchange.</p>

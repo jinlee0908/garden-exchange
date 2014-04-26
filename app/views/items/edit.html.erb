@@ -3,10 +3,4 @@
 <h3>Edit your item on the exchange.</h3>
 <%= render 'shared/item_form' %>
 
-<script>
-$(document).ready( function () { 
-    initial_src = document.getElementById('image').src
-    match_src = '<%= ENV['DOMAIN_URL'] %>' + '/assets/missing.png'
-    if (initial_src == match_src) { handleCategorySelect(); }
-  });
-</script>
+

@@ -22,7 +22,7 @@
 
     <%= f.submit "Save Item", class: "btn btn-default btn-block" %>
     <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
-    <%= link_to 'Remove this from the Exchange', @item, class: "btn btn-danger btn-block", method: :delete %>
+    <%= link_to 'Remove this from the Exchange', @item, class: "btn btn-danger btn-block", id:"remove_btn", method: :delete %>
   <% end %>
 
 </div>
@@ -36,7 +36,6 @@
       // Only process image files.
       if (f.type.match('image.*')) {
       var reader = new FileReader();
-
       reader.onload = (function(theFile) {
         return function(e) {
           document.getElementById("image").src=e.target.result;
@@ -51,21 +50,45 @@
 
   // This handles changing the image when the user chooses a category.
   function handleCategorySelect(evt) {
-    i = document.getElementById('item_category_id')
-    new_category = i.options[i.selectedIndex].text;
-    current_src = document.getElementById('image').src;
-    new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/' + new_category + '.png';
-    document.getElementById("image").src=new_src
+    upload_done = document.getElementById('upload_image').value;
+    if (upload_done == "") {
+      i = document.getElementById('item_category_id');
+      new_category = i.options[i.selectedIndex].text;
+      current_src = document.getElementById('image').src;
+      new_src = '<%= ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] %>' + '/categories/' + new_category + '.png';
+      document.getElementById("image").src=new_src
+    };
   };
   document.getElementById('item_category_id').addEventListener('change', handleCategorySelect, false);
 
   // hide the remove button on new - thanks arcy and kathryn!
-  //function hideRemoveButton() {
-  // var url = document.URL;
-  // var temp = url.split('/');
-  // var page_name = temp[(temp.length - 1)];
-}
+  function hideRemoveButton() {
+    var url = document.URL;
+    var temp = url.split('/');
+    var page_name = temp[(temp.length - 1)];
+    if (page_name == 'new') {
+      document.getElementById('remove_btn').style.visibility="hidden" };
+  };
 
+  // for edit pages, when user image not there, replace missing with stock image
+  function onEditGetCategoryImage() {
+    var url = document.URL;
+    var temp = url.split('/');
+    var page_name = temp[(temp.length - 1)];
+    if (page_name == 'edit') {
+      img_src = document.getElementById('image').src;
+      temp = img_src.split('/');
+      initial_src = temp[(temp.length - 1)];
+      match_src = 'missing.png'
+      if (initial_src == match_src) { handleCategorySelect(); }
+    };
+  };
+
+  // on page load...
+  $(document).ready( function () { 
+    hideRemoveButton();
+    onEditGetCategoryImage();
+  });
 
 </script>
 
