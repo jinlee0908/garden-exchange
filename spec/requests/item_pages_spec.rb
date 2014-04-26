@@ -23,7 +23,7 @@ describe "Item Pages" do
       end
 
       describe "after submission" do
-        before { click_button submit}
+        before { click_button submit }
 
         it { should have_content('error') }
       end
