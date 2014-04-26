@@ -58,6 +58,8 @@ class ItemsController < ApplicationController
       redirect_to root_url
     else
       @item.fire_state_event(:cancel)
+      @item.image.destroy # remove image from s3
+      @item.image.clear # queues attachment to be deleted
       flash[:success] = "Your item was removed from the exchange."
       redirect_to root_url
     end

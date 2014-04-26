@@ -23,8 +23,8 @@ This is the harvest listed:
  <% expiration_date = @item.created_at.days_since(7) %>
 Your listing will expire on <%= expiration_date.strftime('%m/%d/%Y') %>
 
- <% complete_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/complete" %>
-<% make_available_url = "http://" + ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/make_available" %>
+ <% complete_url = ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/complete" %>
+<% make_available_url = ENV['DOMAIN_URL'] + "/trades/" + @trade.id.to_s + "/make_available" %>
 
 Once your exchange is successful please click: <%=complete_url%>
 
