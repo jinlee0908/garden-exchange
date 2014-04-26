@@ -144,7 +144,8 @@ input, textarea, select, .uneditable-input {
 #image_container {
   max-width: auto;
   max-height: 200px;
-  margin: 20% 0% 10% 0%;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
 #image_container_request {
@@ -153,10 +154,11 @@ input, textarea, select, .uneditable-input {
 }
 
 .imageClip {
-  width: 50%;
+  width: 90%;
   height: auto;
   overflow: hidden;
 }
+
 
 .btn-file {
     position: relative;

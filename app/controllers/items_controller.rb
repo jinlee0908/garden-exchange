@@ -36,8 +36,9 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update_attributes(item_params)
+      flash[:success] = "You updated your item."
       # success
-      redirect_to @item
+      redirect_to root_url
     else
       render 'edit'
     end

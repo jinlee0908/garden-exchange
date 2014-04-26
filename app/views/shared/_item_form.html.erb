@@ -8,7 +8,7 @@
 <div class="form-group">
   <%= form_for (@item) do |f| %>
     <div id='image_container' class='block text-center'>
-      <%= image_tag @item.image.url(:medium), class: 'imageClip img-responsive', id:"image" %>
+      <%= image_tag @item.image.url(:medium), class: 'imageClip img-rounded', id:"image" %>
     </div>
     <span class="btn btn-default btn-file btn-block">Add your own image<%= f.file_field :image, id:"upload_image" %></span>
     <%= render 'shared/error_messages' %>
@@ -66,7 +66,7 @@
     var url = document.URL;
     var temp = url.split('/');
     var page_name = temp[(temp.length - 1)];
-    if (page_name == 'new') {
+    if (page_name == 'new' || page_name == 'items') {
       document.getElementById('remove_btn').style.visibility="hidden" };
   };
 
