@@ -151,6 +151,7 @@ input, textarea, select, .uneditable-input {
 #image_container_request {
   max-width: auto;
   max-height: 20em;
+  overflow: hidden;
 }
 
 .imageClip {

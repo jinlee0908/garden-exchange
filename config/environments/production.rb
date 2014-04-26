@@ -89,4 +89,14 @@ GardenExchange::Application.configure do
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
   Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
+
+  ActionMailer::Base.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         ENV['DOMAIN_NAME'],
+    :authentication => :plain
+}
+ActionMailer::Base.delivery_method = :smtp
 end

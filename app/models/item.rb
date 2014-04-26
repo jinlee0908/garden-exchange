@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   attr_encrypted :email, key: ENV['TOKEN_KEY']
   missing_url = ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] + '/categories/missing.png'
   has_attached_file :image, 
-                    :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
+                    :styles => { :medium => ["200x200>", :png], :thumb => ["100x100", :png] }, 
                     :default_url => missing_url
                     # :s3_permissions => :private
   

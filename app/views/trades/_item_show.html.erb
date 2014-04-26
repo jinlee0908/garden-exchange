@@ -3,7 +3,7 @@
     <p id="item_category"><%=@item.category.category%></p>
     <p>Description: <%=@item.description%></p>
     <div id='image_container_request' class='block text-center'>
-      <%= image_tag @item.image.url(:medium), class: 'imageClip img-responsive', id:"image" %>
+      <%= image_tag @item.image.url(:medium), class: 'imageClip img-rounded', id:"image" %>
   </div>   <!-- center -->
 </div>  <!-- form-group -->
 
