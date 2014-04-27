@@ -36,8 +36,9 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update_attributes(item_params)
+      flash[:success] = "You updated your item."
       # success
-      redirect_to @item
+      redirect_to root_url
     else
       render 'edit'
     end
@@ -57,6 +58,8 @@ class ItemsController < ApplicationController
       redirect_to root_url
     else
       @item.fire_state_event(:cancel)
+      @item.image.destroy # remove image from s3
+      @item.image.clear # queues attachment to be deleted
       flash[:success] = "Your item was removed from the exchange."
       redirect_to root_url
     end

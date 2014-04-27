@@ -17,8 +17,10 @@
   };
 
   $(document).ready( function () { 
-    initial_src = document.getElementById('image').src
-    match_src = '<%= ENV['DOMAIN_URL'] %>' + '/assets/missing.png'
+    img_src = document.getElementById('image').src;
+    temp = img_src.split('/');
+    initial_src = temp[(temp.length - 1)];
+    match_src = 'missing.png'
     if (initial_src == match_src) { handleCategorySelect(); }
   });
 

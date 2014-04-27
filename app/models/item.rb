@@ -5,9 +5,10 @@ class Item < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude 
   after_validation :geocode
   attr_encrypted :email, key: ENV['TOKEN_KEY']
+  missing_url = ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] + '/categories/missing.png'
   has_attached_file :image, 
-                    :styles => { :medium => ["300x300>", :png], :thumb => ["100x100", :png] }, 
-                    :default_url => ActionController::Base.helpers.asset_path('missing.png')
+                    :styles => { :medium => ["200x200>", :png], :thumb => ["100x100", :png] }, 
+                    :default_url => missing_url
                     # :s3_permissions => :private
   
   before_create :phone_integers_only
@@ -24,7 +25,7 @@ class Item < ActiveRecord::Base
             allow_blank: true
   validate :must_have_email_or_phone
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  # validates_attachment_size :image, :size => { :in => 0...10.kilobytes }
+  validates_attachment_size :image, :in => 0.megabytes..2.megabytes
 
   # state machine implementation.
   state_machine :state, initial: :active do
