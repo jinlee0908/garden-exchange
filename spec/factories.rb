@@ -15,4 +15,8 @@ FactoryGirl.define do
     comment "tipsy is cool"
     item
   end
+
+  factory :category do
+    sequence(:category) { |v| "Category #{v}" }
+  end
 end

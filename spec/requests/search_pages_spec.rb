@@ -9,6 +9,10 @@ describe "Search Pages" do
 
     it { should have_content('Garden Exchange') }
     it { should_not have_title('| Home') }
+
+    describe "Search function" do
+      # find(:css, 'select#item_category_id').value
+    end
   end  
 
   describe "Search list page" do

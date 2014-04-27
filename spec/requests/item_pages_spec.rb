@@ -31,10 +31,10 @@ describe "Item Pages" do
 
     describe "with valid information" do
       before do
-        select "Kale", from: "item_category_id"
-        fill_in "Description", with: "I have lots of Kale. Come get some."
-        fill_in "Location", with: "17th and Pettygrove Portland Oregon" 
-        fill_in "Email", with: "example@example.com"
+        FactoryGirl.create_list(:category, 16)
+        fill_in "Tell us more about what you have - how much, ?", with: "I have lots of Kale. Come get some."
+        fill_in "Where are you at? ex. 1st and Main", with: "17th and Pettygrove Portland Oregon" 
+        fill_in "Contact me by email (add it here)", with: "example@example.com"
       end
       
       it "should create a new item" do
