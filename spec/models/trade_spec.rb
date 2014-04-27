@@ -11,8 +11,10 @@ describe Trade do
   it { should respond_to(:name) }
   it { should respond_to(:trade_email) }
   it { should respond_to(:comment) }
+  it { should respond_to(:phone_num) }
 
   it { should be_valid }
+
 
   describe 'when comment is not present' do
     before { @trade.comment = " " }
