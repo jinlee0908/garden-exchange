@@ -11,11 +11,11 @@
 
 test_categories = ["Choose a category", "Artichokes", "Asparagus", "Beans",
                     "Beets", "Broccoli", "Cabbage", "Carrots", "Cauliflower",
-                    "Celery", "Collards", "Corn", "Cucumbers", "Eggplant", 
+                    "Celery", "Chard", "Collards", "Corn", "Cucumbers", "Eggplant", 
                     "Garlic", "Kale", "Kohlrabi", "Leeks", "Lettuce", "Melons",
                     "Mushrooms", "Onions", "Parsley", "Parsnips", "Peas", "Peppers",
                     "Potatoes", "Pumpkins", "Radishes", "Rhubarb", "Shallots",
-                    "Spinach", "Squash", "Chard", "Tomatoes", "Other"] 
+                    "Spinach", "Squash", "Tomatoes", "Other"] 
 
 Category.delete_all # clean out what is in there now
 
