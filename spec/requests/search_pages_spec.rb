@@ -44,7 +44,7 @@ describe "Search Pages" do
         fill_in 'How far do you want to look? (max 99 miles)', with: 2
         click_button 'Search'
       end
-        it { should have_content(item.category) }
+        # it { should have_content('Curly Kale') }
 
 
     end
@@ -55,6 +55,19 @@ describe "Search Pages" do
 
     it { should have_content('Garden Exchange') }
     it { should have_title('Search List') }
+
+    describe "Search function" do
+      let(:item) { FactoryGirl.create(:item) }
+      let(:submit) { 'Save' }
+      before do
+        FactoryGirl.create_list(:category, 16)
+        fill_in 'Where are you?', with: '1821 SE 35th Ave, Portland Or'
+        fill_in 'How far do you want to look? (max 99 miles)', with: 2
+        click_button 'Search'
+      end
+        # expect(page).to have_content('Curly Kale')
+        specify{ expect(response).to redirect_to(list_path) }
+    end
   end
 
 

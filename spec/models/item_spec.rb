@@ -51,4 +51,35 @@ describe Item do
     it { should_not be_valid }
   end
 
+  describe 'states' do
+    describe ':active' do
+      it "should be an inital state" do
+        @item.should be_active
+      end
+
+      it 'should change to :pending on :offer_made' do
+        @item.offer_made!
+        @item.should be_pending
+      end
+
+      it 'should change to :inactive on :cancel' do
+        @item.cancel!
+        @item.should be_inactive
+      end
+    end
+
+    describe ':pending' do
+      it 'should change to :complete on :completed' do
+        @item.offer_made!
+        @item.completed!
+        @item.should be_complete
+      end
+
+      it 'should change to :active on :rejected' do
+        @item.offer_made!
+        @item.reject!
+        @item.should be_active
+      end
+    end
+  end
 end
