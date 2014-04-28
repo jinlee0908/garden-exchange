@@ -22,7 +22,7 @@
 
     <%= f.submit "Save Item", class: "btn btn-default btn-block" %>
     <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
-    <%= link_to 'Remove this from the Exchange', @item, class: "btn btn-danger btn-block", id:"remove_btn", method: :delete %>
+    <%= link_to 'Remove this from the Exchange', @item.slug, class: "btn btn-danger btn-block", id:"remove_btn", method: :delete %>
   <% end %>
 
 </div>

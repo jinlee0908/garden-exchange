@@ -6,6 +6,7 @@ FactoryGirl.define do
     location "19th and Pettygrove "
     email "example@example.com"
     phone ""
+    slug "blahblah"
   end
 
   factory :trade do
