@@ -14,5 +14,10 @@ namespace :scheduler do
     expire_these_trades.each do |i|
       i.fire_state_event(:cancel)
     end
+    # now grab all the items with cancelled trades and pending states and make them active
+    expire_these_items = Item.joins(:trades).where(trades: { state: :cancel } ).where(items: { state: :pending } )
+    expire_these_items.each do |i|
+      i.fire_state_event(:reject)
+    end
   end
 end
