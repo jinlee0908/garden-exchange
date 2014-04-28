@@ -29,17 +29,12 @@ class TradesController < ApplicationController
   end
 
   def complete
-    binding.pry
     @trade = Trade.find_by(id: params[:id])
     # @item = Item.find_by_slug(@trade.item_id)
     # @item = Item.find(@trade.item)
-    binding.pry
     @item = Item.find_by_slug(@trade.item.slug)
-    binding.pry
     @trade.fire_events(:completed)
-    binding.pry
     @item.fire_events(:completed)
-    binding.pry
     flash[:success] = 'Successful Exchange!'
     redirect_to root_url
   end

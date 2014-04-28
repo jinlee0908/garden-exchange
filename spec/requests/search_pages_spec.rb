@@ -10,8 +10,8 @@ describe "Search Pages" do
 
   it "should have the right links on the layout" do
     visit root_path
-    # click_link "FAQ"
-    # expect(page).to have_title(full_title('FAQ'))
+    click_link "How it Works"
+    expect(page).to have_title(full_title('How it Works'))
     click_link "Search"
     click_link "By Map"
     expect(page).to have_title('')

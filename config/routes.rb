@@ -1,6 +1,7 @@
 GardenExchange::Application.routes.draw do
   root 'search#index'
   match '/list',                 to:'search#search_list',    via: 'get'
+  match '/how',                  to:'static_pages#how',      via: 'get'
   match 'trades/:id/available',  to:'trades#available',      via: 'get'
   match 'trades/:id/complete',   to:'trades#complete',       via: 'get'
  
