@@ -7,7 +7,7 @@ describe "Item Pages" do
   describe "create a new item page" do
     before  { visit new_item_path }
 
-    it { should have_content('Add an item to the exchange') }
+    it { should have_content('Add to the bounty') }
     it { should have_selector('select') }
   end
 
