@@ -27,6 +27,8 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :in => 0.megabytes..2.megabytes
 
+  validates_presence_of :slug
+
   # state machine implementation.
   state_machine :state, initial: :active do
 
@@ -60,6 +62,10 @@ class Item < ActiveRecord::Base
     else  
       scoped
     end
+  end
+
+  def to_param # setting custom url
+    slug
   end
 
 
