@@ -2,12 +2,14 @@ class TradesController < ApplicationController
   respond_to :html, :json
 
   def new
+    # @item = Item.find_by_slug(params[:item_id])
     @item = Item.find_by(id: params[:item_id])
     @trade = @item.trades.new
     respond_with(@trade)
   end
 
   def create
+    # @item = Item.find_by_slug(params[:trade][:item_id])
     @item = Item.find_by(id: params[:trade][:item_id])
     @trade = @item.trades.create(trade_params)
     if @trade.save
@@ -27,10 +29,17 @@ class TradesController < ApplicationController
   end
 
   def complete
+    binding.pry
     @trade = Trade.find_by(id: params[:id])
-    @item = Item.find(@trade.item_id)
+    # @item = Item.find_by_slug(@trade.item_id)
+    # @item = Item.find(@trade.item)
+    binding.pry
+    @item = Item.find_by_slug(@trade.item.slug)
+    binding.pry
     @trade.fire_events(:completed)
+    binding.pry
     @item.fire_events(:completed)
+    binding.pry
     flash[:success] = 'Successful Exchange!'
     redirect_to root_url
   end
