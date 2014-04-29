@@ -1,19 +1,10 @@
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true">
-</script>
-
-
-<div id="geo"></div>
-
-<script>   
+ // Geolocation 
+function initialize() {
   map = document.getElementById('geo');
 
   if(navigator.geolocation) {
-
     geocoder = new google.maps.Geocoder();
-
     navigator.geolocation.getCurrentPosition(function(position) {
-
       var latlng = new google.maps.LatLng(
         position.coords.latitude, position.coords.longitude
       );
@@ -21,7 +12,7 @@
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[0]) {
-            document.getElementById('search_location').value =
+            document.getElementById('item_location').value =
               results[0].formatted_address;
           } else {
             alert('No results found');
@@ -38,6 +29,4 @@
     // Browser doesn't support Geolocation
     'Error: Your browser doesn\'t support geolocation.';
   }
-</script>
-
-
+}
