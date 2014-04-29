@@ -14,6 +14,7 @@ group :development, :test do
   gem 'pry-debugger'
   gem 'byebug'
   gem 'pry-byebug'
+  gem 'rubocop'
 end
 
 gem 'sass-rails', '4.0.1'
