@@ -19,8 +19,8 @@ html {
 
 body {
   padding: 1%;
-  background-image: asset-data-url("lushgarden4.png");
-  background-size: 100%;
+  background: asset-data-url("lushgarden4.png") no-repeat center center fixed;
+
 }
 
 section {
