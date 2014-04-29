@@ -20,6 +20,8 @@ html {
 body {
   padding: 1%;
   background-image: asset-data-url("lushgarden4.png");
+  background-attachment: fixed;
+  background-size: cover;
   background-size: 100%;
 }
 
