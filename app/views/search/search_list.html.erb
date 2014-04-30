@@ -1,8 +1,16 @@
 <% provide(:title,'Search List') %>
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=initialize">
+</script>
+
+<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'></script>
+
+<div id="geo"></div>
+
 <%= render 'show_list' %>
   <%= will_paginate @items %>
 <%= render 'shared/search_form' %>
-<%= render 'list_geo'%>
+<%=javascript_include_tag 'list_geo.js', "data-turbolinks-track" => true%>
+
 
 

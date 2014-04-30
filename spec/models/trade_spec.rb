@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Trade do
 
-    before :each do
+  before :each do
     @trade = FactoryGirl.create(:trade)
   end
 
@@ -15,27 +15,26 @@ describe Trade do
 
   it { should be_valid }
 
-
   describe 'when comment is not present' do
-    before { @trade.comment = " " }
+    before { @trade.comment = '' }
     it { should_not be_valid }
   end
 
   describe 'when email or text is not present' do
-    before { @trade.trade_email = "" } 
-    before { @trade.phone_num = ""}
+    before { @trade.trade_email = '' }
+    before { @trade.phone_num = '' }
     it { should_not be_valid }
   end
 
   describe 'when email only is present' do
-    before { @trade.trade_email = "example@example.com" }
-    before { @trade.phone_num = "" }
+    before { @trade.trade_email = 'example@example.com' }
+    before { @trade.phone_num = '' }
     it { should be_valid }
   end
 
   describe 'when phone only is present' do
-    before { @trade.trade_email = "" }
-    before { @trade.phone_num = "123-456-7890"}
+    before { @trade.trade_email = '' }
+    before { @trade.phone_num = '123-456-7890' }
     it { should be_valid }
   end
 
@@ -45,13 +44,13 @@ describe Trade do
   end
 
   describe 'when comment is too long' do
-    before { @trade.comment = "a" * 141 }
+    before { @trade.comment = 'a' * 141 }
     it { should_not be_valid }
   end
 
   describe 'states' do
     describe ':new' do
-      it "should be an inital state" do
+      it 'should be an inital state' do
         @trade.should be_new
       end
 

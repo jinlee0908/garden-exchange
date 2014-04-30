@@ -1,11 +1,13 @@
 require 'spec_helper'
 
-describe Item do 
-
-  before { @item = Item.new( description: "This is an example.",
-                            location: "123 First Street, Portland Oregon", email: "example@example.com",
-                            phone: "123-456-7890", state: "active",
-                            category_id: 12, slug: 'blahblah' ) }
+describe Item do
+  before do
+    @item = Item.new(description: 'This is an example.',
+                     location: '123 First Street, Portland Oregon',
+                     email: 'example@example.com',
+                     phone: '123-456-7890', state: 'active',
+                     category_id: 12, slug: 'blahblah')
+  end
 
   subject { @item }
 
@@ -18,42 +20,42 @@ describe Item do
 
   it { should be_valid }
 
-  describe "when location is not present" do
-    before { @item.location = " " }
+  describe 'when location is not present' do
+    before { @item.location = '' }
     it { should_not be_valid }
   end
 
-  describe "when email or text is not present" do
-    before { @item.email = "" } 
-    before { @item.phone = ""}
+  describe 'when email or text is not present' do
+    before { @item.email = '' }
+    before { @item.phone = '' }
     it { should_not be_valid }
   end
 
-  describe "when email only is present" do
-    before { @item.email = "example@example.com" }
-    before { @item.phone = "" }
+  describe 'when email only is present' do
+    before { @item.email = 'example@example.com' }
+    before { @item.phone = '' }
     it { should be_valid }
   end
 
-  describe "when phone only is present" do
-    before { @item.email = "" }
-    before { @item.phone = "123-456-7890"}
+  describe 'when phone only is present' do
+    before { @item.email = '' }
+    before { @item.phone = '123-456-7890' }
     it { should be_valid }
   end
 
-  describe "when category id is not present" do
+  describe 'when category id is not present' do
     before { @item.category_id = nil }
     it { should_not be_valid }
   end
 
-  describe "when description is too long" do
-    before { @item.description = "a" * 141 }
+  describe 'when description is too long' do
+    before { @item.description = 'a' * 141 }
     it { should_not be_valid }
   end
 
   describe 'states' do
     describe ':active' do
-      it "should be an inital state" do
+      it 'should be an inital state' do
         @item.should be_active
       end
 
