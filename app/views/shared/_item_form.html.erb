@@ -19,9 +19,9 @@
     <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
     
     <%= f.text_area :description, :placeholder => "Tell us more about what you have - how much, ?" %>
-    <%= f.text_field :location, placeholder: "Where are you at? ex. 1st and Main" %>
+    <%= f.text_field :location, placeholder: "Where are you at? ex. 1st and Main, Portland OR" %>
     <%= f.email_field :email, :placeholder => "Contact me by email (add it here)" %>
-    <%= f.telephone_field :phone, :placeholder => "Contact me by text (add it here)" %>
+    <%= f.telephone_field :phone, :placeholder => "Contact me by text (add it here)", :disabled=>true %>
 
     <%= f.submit "Save Item", class: "btn btn-default btn-block" %>
     <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
