@@ -1,6 +1,6 @@
  // Geolocation 
 function initialize() {
-  map = document.getElementById('geo');
+  map = document.getElementById('geo_item');
 
   if(navigator.geolocation) {
     geocoder = new google.maps.Geocoder();
