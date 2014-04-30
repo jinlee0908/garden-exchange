@@ -3,9 +3,7 @@
 
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'></script>
 
-<div id="geo_item"></div>
-
-<%= javascript_include_tag 'item_form_geo.js', "data-turbolinks-track" => true %>
+<div id="geo"></div>
 
 
 <div class="form-group">
@@ -92,6 +90,41 @@
     onEditGetCategoryImage();
   });
  
+</script>
+
+<script>
+   // Geolocation 
+  function initialize() {
+    map = document.getElementById('geo');
+
+    if(navigator.geolocation) {
+      geocoder = new google.maps.Geocoder();
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var latlng = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude
+        );
+
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+              document.getElementById('item_location').value =
+                results[0].formatted_address;
+            } else {
+              alert('No results found');
+            }
+          } else {
+            alert('Geocoder failed due to: ' + status);
+          }
+        });
+        
+      }, function() {
+        'Error: The Geolocation service failed.';
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      'Error: Your browser doesn\'t support geolocation.';
+    }
+  }
 </script>
 
 
