@@ -43,7 +43,7 @@ class Item < ActiveRecord::Base
 
     event :completed do
       # add something here to delete aws image
-      transition :pending => :complete
+      transition :pending => :inactive
     end
 
     event :reject do

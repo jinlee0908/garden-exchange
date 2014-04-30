@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find_by_slug(params[:id])
-    if @item.state == 'inactive' || 'complete'
+    if @item.state == 'inactive' || @item.state == 'complete'
       flash[:error] = "This item is no longer available."
       redirect_to root_url
     else
