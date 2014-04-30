@@ -18,14 +18,14 @@
 
     <%= collection_select(:item, :category_id, Category.all, :id, :category) %>
     
-    <%= f.text_area :description, :placeholder => "Tell us more about what you have - how much, ?" %>
+    <%= f.text_area :description, :placeholder => "Tell us more about what you have - how much, what kind, etc." %>
     <%= f.text_field :location, placeholder: "Where are you at? ex. 1st and Main, Portland OR" %>
     <%= f.email_field :email, :placeholder => "Contact me by email (add it here)" %>
-    <%= f.telephone_field :phone, :placeholder => "Text notification coming soon!", :disabled => true  %>
+    <%= f.telephone_field :phone, :placeholder => "Text notification coming soon!", :disabled => true %>
 
-    <%= f.submit "Save Item", class: "btn btn-default btn-block" %>
+    <%= f.submit "Save Item", class: "btn btn-success btn-block" %>
     <%= link_to 'Nevermind', root_url, class: "btn btn-default btn-block" %>
-    <%= link_to 'Remove this from the Exchange', @item.slug, class: "btn btn-danger btn-block", id:"remove_btn", method: :delete %>
+    <%= link_to 'Remove this from the Exchange', @item, class: "btn btn-danger btn-block", id:"remove_btn", method: :delete %>
   <% end %>
 
 </div>

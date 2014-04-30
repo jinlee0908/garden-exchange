@@ -11,7 +11,7 @@ class Item < ActiveRecord::Base
                     :default_url => missing_url
                     # :s3_permissions => :private
   
-  before_create :phone_integers_only
+  # before_create :phone_integers_only
 
   validates :category_id, presence: true
   validates :location, presence: true
@@ -19,11 +19,11 @@ class Item < ActiveRecord::Base
             presence: true,
             length: { maximum: 140, too_long: "%{count} characters is the maximum allowed." }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
+  validates :email, format: { with: VALID_EMAIL_REGEX }, presence: true
   validates :phone,  
             format: { with: /\d/ },
             allow_blank: true
-  validate :must_have_email_or_phone
+  # validate :must_have_email_or_phone
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :in => 0.megabytes..2.megabytes
 
@@ -71,15 +71,15 @@ class Item < ActiveRecord::Base
 
   private
 
-    def must_have_email_or_phone
-      if self.email.empty? && self.phone.empty?
-        errors.add(:base, 'You must include an email or a phone number.')
-      end 
-    end
+    # def must_have_email_or_phone
+    #   if self.email.empty? && self.phone.empty?
+    #     errors.add(:base, 'You must include an email or a phone number.')
+    #   end 
+    # end
 
-    def phone_integers_only
-      unless self.phone.empty?
-        self.phone = phone.gsub(/\D/,"")
-      end
-    end
+    # def phone_integers_only
+    #   unless self.phone.empty?
+    #     self.phone = phone.gsub(/\D/,"")
+    #   end
+    # end
 end
