@@ -35,13 +35,13 @@ class Trade < ActiveRecord::Base
   private
 
   def must_have_trade_email_or_phone_num
-    if trade_email.empty? && phone_num.empty?
+    if self.trade_email.empty? && self.phone_num.empty?
       errors.add(:base, 'You must include an email or a phone number.')
     end
   end
 
   def phone_num_integers_only
-    unless phone_num.empty?
+    unless self.phone_num.empty?
       self.phone_num = phone_num.gsub(/\D/, '')
     end
   end
